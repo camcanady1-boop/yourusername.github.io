@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cameron Canady — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0e0e0e;
+    --white: #f8f7f3;
+    --accent: #c8a96a;
+    --accent2: #3d6b5f;
+    --muted: #888;
+    --card: #ffffff;
+    --bg: #f8f7f3;
+    --border: rgba(0,0,0,0.09);
+    --border-hover: rgba(0,0,0,0.18);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --black: #ece8dc;
+      --white: #111110;
+      --card: #1a1a18;
+      --bg: #111110;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.18);
+      --muted: #777;
+    }
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--black);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(248,247,243,0.85);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    nav { background: rgba(17,17,16,0.85); }
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); font-style: italic; }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  /* MAIN LAYOUT */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 140px 0 80px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 4rem;
+    align-items: center;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 72px;
+    line-height: 1.0;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  .hero-bio {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .tag {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 0.5px solid var(--border);
+    color: var(--muted);
+    background: var(--card);
+  }
+
+  .tag.gold {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .tag.green {
+    background: var(--accent2);
+    color: #fff;
+    border-color: var(--accent2);
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--black);
+    color: var(--bg);
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .hero-cta:hover { opacity: 0.8; }
+
+  /* HERO CARD */
+  .hero-card {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .hero-card-img {
+    width: 100%;
+    height: 200px;
+    display: block;
+  }
+
+  .hero-card-body {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .hero-card-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .hero-card-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .hero-stat {
+    text-align: center;
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 10px 6px;
+  }
+
+  .hero-stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--black);
+    display: block;
+  }
+
+  .hero-stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 600;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* SECTIONS */
+  section { padding: 80px 0; border-bottom: 0.5px solid var(--border); }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    color: var(--black);
+    white-space: nowrap;
+  }
+
+  .section-rule {
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
+  }
+
+  /* PROJECT CARDS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    cursor: default;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+    border-color: var(--border-hover);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .project-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+  }
+
+  .project-img {
+    width: 100%;
+    height: 200px;
+    display: block;
+    object-fit: cover;
+  }
+
+  .project-body {
+    padding: 1.25rem 1.5rem 1.5rem;
+  }
+
+  .project-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 0.75rem;
+  }
+
+  .badge-ai    { background: #f5ece0; color: #7a4f2d; }
+  .badge-data  { background: #e0eaf5; color: #2d4a7a; }
+  .badge-eng   { background: #e0f0ec; color: #1f5a4a; }
+  .badge-sport { background: #f5e8e0; color: #7a3d1f; }
+  .badge-work  { background: #ece0f5; color: #4a2d7a; }
+
+  @media (prefers-color-scheme: dark) {
+    .badge-ai    { background: #2a1c0c; color: #d4915a; }
+    .badge-data  { background: #0c1a2a; color: #5a9ad4; }
+    .badge-eng   { background: #0c2018; color: #4ab89a; }
+    .badge-sport { background: #2a140c; color: #d47850; }
+    .badge-work  { background: #1c0c2a; color: #9a5ad4; }
+  }
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--black);
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+
+  .project-org {
+    font-size: 12px;
+    color: var(--accent2);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .project-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill-chip {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--muted);
+    font-weight: 500;
+    border: 0.5px solid var(--border);
+  }
+
+  /* EXPERIENCE */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .exp-item:first-child { border-top: 0.5px solid var(--border); }
+
+  .exp-date {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    padding-top: 3px;
+  }
+
+  .exp-role {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 3px;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    color: var(--accent2);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .exp-bullets li {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .edu-card {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+
+  .edu-school {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .edu-degree {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+
+  .edu-detail {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .edu-gpa {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-top: 0.75rem;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .skills-category {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .skills-cat-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent2);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-left { }
+
+  .footer-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+
+  .footer-contact {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .footer-contact a {
+    color: var(--accent2);
+    text-decoration: none;
+  }
+
+  .footer-right {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 120px 0 60px;
+    }
+    .hero-card { display: none; }
+    .hero-name { font-size: 52px; }
+    .exp-item { grid-template-columns: 1fr; gap: 4px; }
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    main { padding: 0 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Cameron <span>Canady</span></a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Industrial Engineer · D1 Athlete · Builder</div>
+      <h1 class="hero-name">Cameron<br><em>Canady</em></h1>
+      <p class="hero-bio">Industrial Engineering Technology student at Northern Arizona University. D1 NCAA sprinter and long jumper. I build systems that optimize things — whether that's supply chains, logistics pipelines, or my 200m split.</p>
+      <div class="hero-tags">
+        <span class="tag gold">D1 NCAA Athlete</span>
+        <span class="tag green">Dean's List · 3.6 GPA</span>
+        <span class="tag">Industrial Engineering</span>
+        <span class="tag">Data Analytics</span>
+        <span class="tag">Python · SQL</span>
+        <span class="tag">Power BI · SolidWorks</span>
+      </div>
+      <a href="mailto:ckc298@nau.edu" class="hero-cta">Get in touch →</a>
+    </div>
+
+    <div class="hero-card">
+      <!-- AI-generated: abstract track / engineering composite portrait -->
+      <svg class="hero-card-img" viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0d1f14"/>
+            <stop offset="100%" stop-color="#1a1025"/>
+          </linearGradient>
+          <linearGradient id="tg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#c8a96a" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#4a7c6f" stop-opacity="0.8"/>
+          </linearGradient>
+        </defs>
+        <rect width="340" height="200" fill="url(#hg)"/>
+        <!-- Track lanes -->
+        <ellipse cx="170" cy="160" rx="280" ry="90" fill="none" stroke="#c8a96a" stroke-width="0.5" opacity="0.3"/>
+        <ellipse cx="170" cy="160" rx="240" ry="75" fill="none" stroke="#c8a96a" stroke-width="0.5" opacity="0.3"/>
+        <ellipse cx="170" cy="160" rx="200" ry="60" fill="none" stroke="#c8a96a" stroke-width="0.5" opacity="0.25"/>
+        <ellipse cx="170" cy="160" rx="160" ry="45" fill="none" stroke="#c8a96a" stroke-width="0.5" opacity="0.2"/>
+        <!-- Circuit lines -->
+        <line x1="20" y1="40" x2="100" y2="40" stroke="#4a7c6f" stroke-width="1" opacity="0.6"/>
+        <line x1="100" y1="40" x2="100" y2="70" stroke="#4a7c6f" stroke-width="1" opacity="0.6"/>
+        <line x1="100" y1="70" x2="160" y2="70" stroke="#4a7c6f" stroke-width="1" opacity="0.6"/>
+        <circle cx="160" cy="70" r="3" fill="#4a7c6f" opacity="0.8"/>
+        <line x1="220" y1="30" x2="320" y2="30" stroke="#c8a96a" stroke-width="1" opacity="0.4"/>
+        <line x1="220" y1="30" x2="220" y2="60" stroke="#c8a96a" stroke-width="1" opacity="0.4"/>
+        <circle cx="220" cy="60" r="3" fill="#c8a96a" opacity="0.7"/>
+        <!-- Sprinter silhouette (abstract) -->
+        <g opacity="0.9">
+          <circle cx="185" cy="55" r="12" fill="#c8a96a" opacity="0.85"/>
+          <line x1="185" y1="67" x2="185" y2="105" stroke="#c8a96a" stroke-width="3" stroke-linecap="round"/>
+          <line x1="185" y1="80" x2="165" y2="95" stroke="#c8a96a" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="185" y1="80" x2="205" y2="73" stroke="#c8a96a" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="185" y1="105" x2="168" y2="128" stroke="#c8a96a" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="185" y1="105" x2="200" y2="130" stroke="#c8a96a" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="168" y1="128" x2="158" y2="145" stroke="#c8a96a" stroke-width="2" stroke-linecap="round"/>
+          <line x1="200" y1="130" x2="215" y2="148" stroke="#c8a96a" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <!-- Motion lines -->
+        <line x1="120" y1="85" x2="145" y2="85" stroke="#c8a96a" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+        <line x1="115" y1="92" x2="143" y2="92" stroke="#c8a96a" stroke-width="1" opacity="0.35" stroke-linecap="round"/>
+        <line x1="118" y1="99" x2="144" y2="99" stroke="#c8a96a" stroke-width="0.75" opacity="0.2" stroke-linecap="round"/>
+        <!-- Data nodes -->
+        <circle cx="50" cy="120" r="4" fill="#4a7c6f" opacity="0.6"/>
+        <circle cx="290" cy="90" r="3" fill="#c8a96a" opacity="0.5"/>
+        <circle cx="310" cy="130" r="5" fill="#4a7c6f" opacity="0.4"/>
+        <line x1="50" y1="120" x2="290" y2="90" stroke="#4a7c6f" stroke-width="0.5" opacity="0.2"/>
+        <!-- Gradient bar at bottom -->
+        <rect x="0" y="185" width="340" height="15" fill="url(#tg)" opacity="0.6"/>
+      </svg>
+      <div class="hero-card-body">
+        <div class="hero-card-name">Cameron Canady</div>
+        <div class="hero-card-sub">Engineer · Sprinter · Builder — Flower Mound, TX</div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">3.6</span>
+            <span class="hero-stat-label">GPA</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">D1</span>
+            <span class="hero-stat-label">NCAA</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">All-Am</span>
+            <span class="hero-stat-label">Track</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header">
+      <h2 class="section-title">Projects</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- PROJECT 1: Quantum AI Supply Chain -->
+      <div class="project-card">
+        <svg class="project-img" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="p1bg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0a0a1a"/>
+              <stop offset="100%" stop-color="#1a0d08"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="200" fill="url(#p1bg)"/>
+          <!-- Quantum nodes network -->
+          <circle cx="200" cy="100" r="18" fill="none" stroke="#c8a96a" stroke-width="1.5" opacity="0.9"/>
+          <circle cx="200" cy="100" r="6" fill="#c8a96a" opacity="0.9"/>
+          <!-- Orbiting rings -->
+          <ellipse cx="200" cy="100" rx="50" ry="18" fill="none" stroke="#c8a96a" stroke-width="0.75" opacity="0.4" transform="rotate(30 200 100)"/>
+          <ellipse cx="200" cy="100" rx="50" ry="18" fill="none" stroke="#c8a96a" stroke-width="0.75" opacity="0.3" transform="rotate(-30 200 100)"/>
+          <!-- Supply chain nodes -->
+          <circle cx="80" cy="60" r="8" fill="#c8a96a" opacity="0.7"/>
+          <circle cx="320" cy="60" r="8" fill="#c8a96a" opacity="0.7"/>
+          <circle cx="60" cy="150" r="8" fill="#4a7c6f" opacity="0.7"/>
+          <circle cx="340" cy="150" r="8" fill="#4a7c6f" opacity="0.7"/>
+          <circle cx="200" cy="30" r="6" fill="#c8a96a" opacity="0.5"/>
+          <circle cx="200" cy="170" r="6" fill="#4a7c6f" opacity="0.5"/>
+          <!-- Connections -->
+          <line x1="200" y1="100" x2="80" y2="60" stroke="#c8a96a" stroke-width="0.75" opacity="0.4"/>
+          <line x1="200" y1="100" x2="320" y2="60" stroke="#c8a96a" stroke-width="0.75" opacity="0.4"/>
+          <line x1="200" y1="100" x2="60" y2="150" stroke="#4a7c6f" stroke-width="0.75" opacity="0.4"/>
+          <line x1="200" y1="100" x2="340" y2="150" stroke="#4a7c6f" stroke-width="0.75" opacity="0.4"/>
+          <line x1="200" y1="100" x2="200" y2="30" stroke="#c8a96a" stroke-width="0.75" opacity="0.3"/>
+          <line x1="200" y1="100" x2="200" y2="170" stroke="#4a7c6f" stroke-width="0.75" opacity="0.3"/>
+          <line x1="80" y1="60" x2="60" y2="150" stroke="#888" stroke-width="0.5" opacity="0.2"/>
+          <line x1="320" y1="60" x2="340" y2="150" stroke="#888" stroke-width="0.5" opacity="0.2"/>
+          <!-- AI data streams -->
+          <rect x="30" y="88" width="30" height="3" rx="1.5" fill="#c8a96a" opacity="0.3"/>
+          <rect x="30" y="96" width="20" height="3" rx="1.5" fill="#c8a96a" opacity="0.2"/>
+          <rect x="340" y="88" width="30" height="3" rx="1.5" fill="#4a7c6f" opacity="0.3"/>
+          <rect x="345" y="96" width="20" height="3" rx="1.5" fill="#4a7c6f" opacity="0.2"/>
+          <!-- Label -->
+          <text x="200" y="192" text-anchor="middle" fill="#c8a96a" font-size="9" opacity="0.6" font-family="sans-serif" letter-spacing="2">QUANTUM · AI · SUPPLY CHAIN</text>
+        </svg>
+        <div class="project-body">
+          <span class="project-badge badge-ai">In Progress</span>
+          <div class="project-title">Quantum-AI Supply Chain Risk Engine</div>
+          <div class="project-org">Personal Project · 2025</div>
+          <div class="project-desc">Building AI-driven prediction models with quantum-inspired optimization to evaluate supply chain resilience — analyzing supplier stability, transportation networks, climate events, and geopolitical risk.</div>
+          <div class="project-skills">
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">Machine Learning</span>
+            <span class="skill-chip">Optimization</span>
+            <span class="skill-chip">Risk Modeling</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 2: GRC Dashboard -->
+      <div class="project-card">
+        <svg class="project-img" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="p2bg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#020d1a"/>
+              <stop offset="100%" stop-color="#0a1a2a"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="200" fill="url(#p2bg)"/>
+          <!-- Dashboard mock -->
+          <rect x="20" y="20" width="360" height="160" rx="8" fill="#0d1f35" stroke="#1e4060" stroke-width="0.5"/>
+          <!-- Top bar -->
+          <rect x="20" y="20" width="360" height="24" rx="8" fill="#0a2840"/>
+          <rect x="20" y="32" width="360" height="12" fill="#0a2840"/>
+          <circle cx="36" cy="32" r="5" fill="#e05555" opacity="0.7"/>
+          <circle cx="52" cy="32" r="5" fill="#e0a855" opacity="0.7"/>
+          <circle cx="68" cy="32" r="5" fill="#55e07a" opacity="0.7"/>
+          <text x="200" y="37" text-anchor="middle" fill="#5a9ad4" font-size="8" font-family="monospace" opacity="0.8">GRC Security Dashboard · Power BI</text>
+          <!-- Chart bars -->
+          <rect x="40" y="100" width="18" height="60" rx="2" fill="#378ADD" opacity="0.7"/>
+          <rect x="64" y="80" width="18" height="80" rx="2" fill="#378ADD" opacity="0.6"/>
+          <rect x="88" y="115" width="18" height="45" rx="2" fill="#E24B4A" opacity="0.7"/>
+          <rect x="112" y="70" width="18" height="90" rx="2" fill="#378ADD" opacity="0.8"/>
+          <rect x="136" y="90" width="18" height="70" rx="2" fill="#E24B4A" opacity="0.5"/>
+          <!-- Risk score gauge (right side) -->
+          <circle cx="300" cy="110" r="45" fill="none" stroke="#1e4060" stroke-width="8"/>
+          <circle cx="300" cy="110" r="45" fill="none" stroke="#378ADD" stroke-width="8" stroke-dasharray="85 198" stroke-dashoffset="0" transform="rotate(-90 300 110)" opacity="0.8"/>
+          <circle cx="300" cy="110" r="45" fill="none" stroke="#E24B4A" stroke-width="8" stroke-dasharray="40 198" stroke-dashoffset="-85" transform="rotate(-90 300 110)" opacity="0.7"/>
+          <text x="300" y="106" text-anchor="middle" fill="#5a9ad4" font-size="16" font-family="monospace" font-weight="bold">73</text>
+          <text x="300" y="120" text-anchor="middle" fill="#5a9ad4" font-size="7" font-family="monospace" opacity="0.7">RISK SCORE</text>
+          <!-- Data rows -->
+          <rect x="40" y="58" width="120" height="6" rx="1" fill="#1e4060" opacity="0.8"/>
+          <rect x="40" y="68" width="80" height="4" rx="1" fill="#1e4060" opacity="0.5"/>
+          <text x="200" y="192" text-anchor="middle" fill="#378ADD" font-size="9" opacity="0.5" font-family="monospace" letter-spacing="2">GRC · SECURITY · POWER BI</text>
+        </svg>
+        <div class="project-body">
+          <span class="project-badge badge-data">Spring 2025</span>
+          <div class="project-title">GRC Logistics & Security Dashboard</div>
+          <div class="project-org">Northern Arizona University</div>
+          <div class="project-desc">End-to-end dashboard tracking security controls, audit evidence, and vulnerabilities. Built a Python pipeline to clean and merge security data feeding directly into Power BI, with a risk scoring system to surface high-priority areas.</div>
+          <div class="project-skills">
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">Power BI</span>
+            <span class="skill-chip">Data Pipeline</span>
+            <span class="skill-chip">Risk Scoring</span>
+            <span class="skill-chip">GRC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 3: AQFlow -->
+      <div class="project-card">
+        <svg class="project-img" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="p3bg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#051510"/>
+              <stop offset="100%" stop-color="#0a2218"/>
+            </linearGradient>
+            <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4a9eca" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#1d6e56" stop-opacity="0.6"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="200" fill="url(#p3bg)"/>
+          <!-- Water flow waves -->
+          <path d="M0,120 Q50,100 100,120 Q150,140 200,120 Q250,100 300,120 Q350,140 400,120 L400,200 L0,200 Z" fill="#1d6e56" opacity="0.3"/>
+          <path d="M0,135 Q50,115 100,135 Q150,155 200,135 Q250,115 300,135 Q350,155 400,135 L400,200 L0,200 Z" fill="#1d9e75" opacity="0.2"/>
+          <path d="M0,150 Q50,130 100,150 Q150,170 200,150 Q250,130 300,150 Q350,170 400,150 L400,200 L0,200 Z" fill="#4a9eca" opacity="0.15"/>
+          <!-- Hydration bottle engineering drawing -->
+          <rect x="168" y="30" width="64" height="110" rx="10" fill="none" stroke="#4a9eca" stroke-width="1.5" opacity="0.8"/>
+          <rect x="175" y="20" width="50" height="18" rx="5" fill="none" stroke="#4a9eca" stroke-width="1" opacity="0.6"/>
+          <!-- Fill level -->
+          <rect x="170" y="80" width="60" height="58" rx="0" fill="#1d9e75" opacity="0.4" clip-path="url(#bottle-clip)"/>
+          <rect x="168" y="30" width="64" height="110" rx="10" fill="none" stroke="#4a9eca" stroke-width="1.5" opacity="0.8"/>
+          <!-- Measurement lines -->
+          <line x1="232" y1="50" x2="245" y2="50" stroke="#4a9eca" stroke-width="0.75" opacity="0.5"/>
+          <line x1="232" y1="70" x2="248" y2="70" stroke="#4a9eca" stroke-width="0.75" opacity="0.5"/>
+          <line x1="232" y1="90" x2="245" y2="90" stroke="#4a9eca" stroke-width="0.75" opacity="0.5"/>
+          <line x1="232" y1="110" x2="248" y2="110" stroke="#4a9eca" stroke-width="0.75" opacity="0.5"/>
+          <line x1="232" y1="130" x2="245" y2="130" stroke="#4a9eca" stroke-width="0.75" opacity="0.5"/>
+          <text x="250" y="73" fill="#4a9eca" font-size="7" font-family="monospace" opacity="0.6">750ml</text>
+          <text x="250" y="113" fill="#4a9eca" font-size="7" font-family="monospace" opacity="0.6">375ml</text>
+          <!-- Dimension arrows -->
+          <line x1="140" y1="30" x2="140" y2="140" stroke="#1d9e75" stroke-width="0.75" opacity="0.5"/>
+          <line x1="136" y1="30" x2="144" y2="30" stroke="#1d9e75" stroke-width="0.75" opacity="0.5"/>
+          <line x1="136" y1="140" x2="144" y2="140" stroke="#1d9e75" stroke-width="0.75" opacity="0.5"/>
+          <text x="128" y="88" fill="#1d9e75" font-size="7" font-family="monospace" opacity="0.7" transform="rotate(-90 128 88)">H:110mm</text>
+          <!-- AQ branding -->
+          <text x="200" y="192" text-anchor="middle" fill="#4a9eca" font-size="10" opacity="0.6" font-family="monospace" letter-spacing="3">AQFLOW · HYDRATION SYSTEMS</text>
+        </svg>
+        <div class="project-body">
+          <span class="project-badge badge-eng">Fall 2024</span>
+          <div class="project-title">AQFlow Athlete Hydration System</div>
+          <div class="project-org">Northern Arizona University · Engineering Design</div>
+          <div class="project-desc">Engineered a prototype hydration system purpose-built for athletes. Developed hardware design, custom branding, and structured usability testing strategies to validate performance under competition conditions.</div>
+          <div class="project-skills">
+            <span class="skill-chip">CAD / SolidWorks</span>
+            <span class="skill-chip">Prototype Design</span>
+            <span class="skill-chip">Usability Testing</span>
+            <span class="skill-chip">Branding</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 4: Athlete Tracking -->
+      <div class="project-card">
+        <svg class="project-img" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="p4bg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#160808"/>
+              <stop offset="100%" stop-color="#1a1008"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="200" fill="url(#p4bg)"/>
+          <!-- Performance graph -->
+          <polyline points="30,150 70,120 110,130 150,90 190,95 230,70 270,80 310,55 350,60 390,40"
+            fill="none" stroke="#c8a96a" stroke-width="2" opacity="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Area fill under line -->
+          <polygon points="30,150 70,120 110,130 150,90 190,95 230,70 270,80 310,55 350,60 390,40 390,175 30,175"
+            fill="#c8a96a" opacity="0.06"/>
+          <!-- Data points -->
+          <circle cx="70" cy="120" r="4" fill="#c8a96a" opacity="0.8"/>
+          <circle cx="150" cy="90" r="4" fill="#c8a96a" opacity="0.8"/>
+          <circle cx="230" cy="70" r="4" fill="#c8a96a" opacity="0.8"/>
+          <circle cx="310" cy="55" r="4" fill="#c8a96a" opacity="0.8"/>
+          <circle cx="390" cy="40" r="4" fill="#c8a96a" opacity="0.8"/>
+          <!-- Recovery metric (second line) -->
+          <polyline points="30,160 70,155 110,145 150,148 190,138 230,142 270,130 310,125 350,128 390,115"
+            fill="none" stroke="#4a7c6f" stroke-width="1.5" opacity="0.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 3"/>
+          <!-- Athlete icons (simplified) -->
+          <circle cx="100" cy="170" r="5" fill="#c8a96a" opacity="0.4"/>
+          <circle cx="200" cy="170" r="5" fill="#c8a96a" opacity="0.4"/>
+          <circle cx="300" cy="170" r="5" fill="#c8a96a" opacity="0.4"/>
+          <!-- Grid lines -->
+          <line x1="30" y1="175" x2="390" y2="175" stroke="#333" stroke-width="0.5" opacity="0.5"/>
+          <line x1="30" y1="40" x2="30" y2="175" stroke="#333" stroke-width="0.5" opacity="0.5"/>
+          <!-- Y axis labels -->
+          <text x="18" y="80" fill="#888" font-size="7" font-family="monospace" text-anchor="middle">SPD</text>
+          <text x="18" y="130" fill="#888" font-size="7" font-family="monospace" text-anchor="middle">REC</text>
+          <!-- Legend -->
+          <line x1="40" y1="20" x2="65" y2="20" stroke="#c8a96a" stroke-width="2"/>
+          <text x="70" y="24" fill="#c8a96a" font-size="7" font-family="monospace" opacity="0.7">Speed</text>
+          <line x1="120" y1="20" x2="145" y2="20" stroke="#4a7c6f" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="150" y="24" fill="#4a7c6f" font-size="7" font-family="monospace" opacity="0.7">Recovery</text>
+          <text x="200" y="192" text-anchor="middle" fill="#c8a96a" font-size="9" opacity="0.5" font-family="monospace" letter-spacing="2">ATHLETE PERFORMANCE TRACKER</text>
+        </svg>
+        <div class="project-body">
+          <span class="project-badge badge-sport">2023</span>
+          <div class="project-title">Athlete Performance Tracking Initiative</div>
+          <div class="project-org">Edward S. Marcus High School</div>
+          <div class="project-desc">Designed a data system tracking speed, endurance, and recovery metrics across multiple sports. Presented findings directly to athletic staff, influencing conditioning strategies for both track and football programs.</div>
+          <div class="project-skills">
+            <span class="skill-chip">Data Systems</span>
+            <span class="skill-chip">Sports Analytics</span>
+            <span class="skill-chip">Excel</span>
+            <span class="skill-chip">Presentation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 5: Uber Freight -->
+      <div class="project-card">
+        <svg class="project-img" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="p5bg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#100a1a"/>
+              <stop offset="100%" stop-color="#0a0a14"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="200" fill="url(#p5bg)"/>
+          <!-- US Map simplified outline (abstract) -->
+          <path d="M60,60 L180,45 L280,55 L340,70 L350,110 L320,130 L280,125 L240,140 L180,135 L120,145 L80,130 L55,100 Z"
+            fill="none" stroke="#7a6aac" stroke-width="0.75" opacity="0.4"/>
+          <!-- Route lines -->
+          <line x1="90" y1="95" x2="200" y2="80" stroke="#c8a96a" stroke-width="1.5" opacity="0.6" stroke-linecap="round"/>
+          <line x1="200" y1="80" x2="300" y2="100" stroke="#c8a96a" stroke-width="1.5" opacity="0.6" stroke-linecap="round"/>
+          <line x1="90" y1="95" x2="160" y2="120" stroke="#7a6aac" stroke-width="1" opacity="0.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+          <line x1="160" y1="120" x2="280" y2="105" stroke="#7a6aac" stroke-width="1" opacity="0.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+          <!-- Hub nodes -->
+          <circle cx="90" cy="95" r="8" fill="#7a6aac" opacity="0.8"/>
+          <circle cx="200" cy="80" r="10" fill="#c8a96a" opacity="0.9"/>
+          <circle cx="300" cy="100" r="8" fill="#7a6aac" opacity="0.8"/>
+          <circle cx="160" cy="120" r="6" fill="#4a7c6f" opacity="0.7"/>
+          <circle cx="280" cy="105" r="6" fill="#4a7c6f" opacity="0.7"/>
+          <!-- Truck icon (simplified) -->
+          <rect x="188" y="68" width="24" height="12" rx="2" fill="#fff" opacity="0.15"/>
+          <rect x="192" y="64" width="14" height="6" rx="1" fill="#fff" opacity="0.1"/>
+          <!-- Efficiency bars (bottom) -->
+          <text x="40" y="162" fill="#888" font-size="8" font-family="monospace">OT SAVINGS</text>
+          <rect x="40" y="166" width="80" height="6" rx="1" fill="#1a1a2a"/>
+          <rect x="40" y="166" width="72" height="6" rx="1" fill="#c8a96a" opacity="0.7"/>
+          <text x="126" y="172" fill="#c8a96a" font-size="8" font-family="monospace">10%</text>
+          <text x="40" y="180" fill="#888" font-size="8" font-family="monospace">THROUGHPUT</text>
+          <rect x="40" y="184" width="80" height="6" rx="1" fill="#1a1a2a"/>
+          <rect x="40" y="184" width="56" height="6" rx="1" fill="#4a7c6f" opacity="0.7"/>
+          <text x="126" y="190" fill="#4a7c6f" font-size="8" font-family="monospace">+7%</text>
+          <text x="280" y="192" text-anchor="middle" fill="#7a6aac" font-size="9" opacity="0.5" font-family="monospace" letter-spacing="2">UBER FREIGHT · LOGISTICS</text>
+        </svg>
+        <div class="project-body">
+          <span class="project-badge badge-work">Summer 2025</span>
+          <div class="project-title">Uber Freight Routing Optimization</div>
+          <div class="project-org">Uber Freight · Logistics & Operations Analyst</div>
+          <div class="project-desc">Analyzed hub operations to identify bottlenecks in package flow and workforce scheduling. Built optimization models that improved truck routing — delivering insights showing 10% savings in overtime costs and a 7% increase in throughput.</div>
+          <div class="project-skills">
+            <span class="skill-chip">Excel</span>
+            <span class="skill-chip">Power BI</span>
+            <span class="skill-chip">Optimization Models</span>
+            <span class="skill-chip">Logistics Analytics</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header">
+      <h2 class="section-title">Experience</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-date">Jun – Aug 2025</div>
+        <div>
+          <div class="exp-role">Logistics & Operations Analyst</div>
+          <div class="exp-company">Uber Freight · Remote</div>
+          <ul class="exp-bullets">
+            <li>Analyzed hub operations to identify bottlenecks in package flow and workforce scheduling</li>
+            <li>Built optimization models improving truck routing and reducing delivery delays</li>
+            <li>Delivered insights showing 10% savings in overtime costs and 7% increase in throughput</li>
+            <li>Transformed complex shipping data into actionable strategies using Excel and Power BI</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">Jan – Aug 2024</div>
+        <div>
+          <div class="exp-role">Delivery Driver</div>
+          <div class="exp-company">Domino's · Flower Mound, TX</div>
+          <ul class="exp-bullets">
+            <li>Maintained on-time delivery performance in a fast-paced, efficiency-driven environment</li>
+            <li>Managed cash transactions and customer communications with accuracy and professionalism</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">May – Aug 2021</div>
+        <div>
+          <div class="exp-role">Farm Irrigation Technician</div>
+          <div class="exp-company">Infinity Landscaping · Carrollton, TX</div>
+          <ul class="exp-bullets">
+            <li>Installed, maintained, and repaired irrigation systems for large-scale landscaping projects</li>
+            <li>Developed hands-on skills in system troubleshooting, field operations, and equipment use</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-header">
+      <h2 class="section-title">Education</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card" style="border-color: var(--accent); border-width: 1px;">
+        <div class="edu-school">Northern Arizona University · Online</div>
+        <div class="edu-degree">B.S. Industrial Engineering Technology</div>
+        <div class="edu-detail">
+          Minor in Data Analytics · Expected May 2028<br>
+          D1 NCAA Track &amp; Field Athlete<br>
+          National Honor Society of Black Engineers · Alpha Lambda Delta · NSCS<br>
+          First Team All-Academic Big Sky Conference
+        </div>
+        <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 0.5px solid var(--border);">
+          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); font-weight: 600; margin-bottom: 0.5rem;">Engineering Technology Focus</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+            <span class="skill-chip">Circuit Design</span>
+            <span class="skill-chip">MATLAB</span>
+            <span class="skill-chip">SolidWorks / CAD</span>
+            <span class="skill-chip">Systems Analysis</span>
+            <span class="skill-chip">Lean Manufacturing</span>
+            <span class="skill-chip">Quality Control</span>
+            <span class="skill-chip">Technical Documentation</span>
+            <span class="skill-chip">Data Analytics</span>
+          </div>
+        </div>
+        <span class="edu-gpa">GPA 3.6 · Dean's List</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-school">Dallas College · Online</div>
+        <div class="edu-degree">A.S. Industrial Engineering Technology</div>
+        <div class="edu-detail">Graduating 2026<br>National Society of Leadership and Success</div>
+        <span class="edu-gpa">GPA 3.7 · Dean's List</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-school">Edward S. Marcus High School · Flower Mound, TX</div>
+        <div class="edu-degree">High School Diploma</div>
+        <div class="edu-detail">June 2024 · Top 5% of Class<br>National Honor Society · DECA Finalist<br>Nike Track All-American · National Finalist<br>School Record Holder — Long Jump</div>
+        <span class="edu-gpa">GPA 4.2</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header">
+      <h2 class="section-title">Skills</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skills-category">
+        <div class="skills-cat-title">Software & Tools</div>
+        <div class="skills-list">
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">SQL</span>
+          <span class="skill-chip">MATLAB</span>
+          <span class="skill-chip">Power BI</span>
+          <span class="skill-chip">Excel</span>
+          <span class="skill-chip">SolidWorks</span>
+          <span class="skill-chip">CAD</span>
+        </div>
+      </div>
+      <div class="skills-category">
+        <div class="skills-cat-title">Test & Lab</div>
+        <div class="skills-list">
+          <span class="skill-chip">Circuit Design</span>
+          <span class="skill-chip">Troubleshooting</span>
+          <span class="skill-chip">Multimeter Use</span>
+          <span class="skill-chip">Signal Processing</span>
+          <span class="skill-chip">Schematic Reading</span>
+        </div>
+      </div>
+      <div class="skills-category">
+        <div class="skills-cat-title">Data & Analysis</div>
+        <div class="skills-list">
+          <span class="skill-chip">Data Analysis</span>
+          <span class="skill-chip">Logistics Optimization</span>
+          <span class="skill-chip">GRC Dashboards</span>
+          <span class="skill-chip">Reporting Pipelines</span>
+          <span class="skill-chip">Risk Modeling</span>
+        </div>
+      </div>
+      <div class="skills-category">
+        <div class="skills-cat-title">Other</div>
+        <div class="skills-list">
+          <span class="skill-chip">Technical Documentation</span>
+          <span class="skill-chip">Team Leadership</span>
+          <span class="skill-chip">Problem Solving</span>
+          <span class="skill-chip">Public Speaking</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-left">
+    <div class="footer-name">Cameron Canady</div>
+    <div class="footer-contact">
+      Flower Mound, TX &nbsp;·&nbsp;
+      <a href="mailto:ckc298@nau.edu">ckc298@nau.edu</a> &nbsp;·&nbsp;
+      972-215-8549
+    </div>
+  </div>
+  <div class="footer-right">Built with care · 2025</div>
+</footer>
+
+</body>
+</html>
